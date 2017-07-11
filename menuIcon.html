@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hamburger Icon SVG animation</title>
+	<style type="text/css">
+		body { margin: 0; height: 100vh; }
+		main{
+			margin: auto;
+			height: 100%
+		}
+		.svg{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: auto;
+			width: 50vmin;
+			max-width: 256px;
+		}
+		.svg:hover svg .x { stroke: #0089FF; }
+		.svg::before{
+			background-color: #0089FF;
+			border-radius: 50%;
+			content: '';
+			display: block;
+			height: 5vw;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%) scale(0,0);
+			transition: all 0.3s cubic-bezier(0.5, 0, 0.7, 2);
+			opacity: 0;
+			width: 5vw;
+			z-index: -1;
+		}
+		.svg svg .x{
+			transition: all 0.5s cubic-bezier(0.63, 0.48, 0.37, 1.01);
+			fill:none;stroke:#000000;stroke-width:50px;stroke-linecap:round;stroke-miterlimit:10;
+			stroke-dasharray:230 520;
+			stroke-dashoffset: 0;	
+		}
+		.svg svg .x.center{
+			stroke-dasharray:230 0;
+			stroke-dashoffset: 0;
+		}
+		.svg.clicked svg .x.center{
+			stroke-dasharray:0 230;
+			stroke-dashoffset: -112.5;
+		}
+
+		.svg.clicked svg .x{
+			stroke-dasharray:140 600;
+			stroke-dashoffset: -590;
+		}
+		.x {
+			fill: none;
+			stroke: #000;
+			stroke-miterlimit: 10;
+		}
+		
+	</style>
+</head>
+<body>
+	<main>
+		<div class="svg" id="menuIcon">
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 116 512 280">
+				<path class="x top" d="M144.162,142.861H368.839a93.423,93.423,0,1,1-66.556,159.248l-91.227-91.877" />
+				<path class="x bottom" d="M144.162,369.139H368.839a93.423,93.423,0,1,0-66.556-159.248l-91.227,91.877" />
+				<line class="x center" x2="368.839" y2="256" x1="144.162" y1="256" />
+			</svg>
+		</a>
+		</div>
+	</main>
+	<script>
+		document.getElementById('menuIcon').onclick = function (){
+			toggle(this);
+		}
+		
+		function toggle(x){
+			if(x.className == "svg") {
+				x.className += " clicked";
+			} else {
+				x.className = "svg";
+			}
+		}
+	</script>
+</body>
+</html>
